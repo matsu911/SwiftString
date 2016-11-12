@@ -17,7 +17,8 @@ public extension String {
     ///  - returns: The string between the two bookends, or nil if the bookends cannot be found, the bookends are the same or appear contiguously.
     func between(_ left: String, _ right: String) -> String? {
         guard
-          let leftRange = range(of:left), let rightRange = range(of: right, options: .backwards),
+          let leftRange = range(of:left),
+          let rightRange = range(of: right, options: .backwards),
           left != right && leftRange.upperBound != rightRange.lowerBound
         else { return nil }
 
@@ -159,7 +160,7 @@ public extension String {
         return false
     }
 
-    private func join<S: Sequence>(_ elements: S) -> String {
+    func join<S: Sequence>(_ elements: S) -> String {
         return elements.map{String(describing: $0)}.joined(separator: self)
     }
 
